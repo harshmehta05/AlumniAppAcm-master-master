@@ -36,6 +36,9 @@ public class QuestionsAdapter  extends ArrayAdapter<QuestionsModel> implements V
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         QuestionsModel dataModel = getItem(position);
+
+
+
         LayoutInflater inflater = LayoutInflater.from(getContext());
         convertView = inflater.inflate(R.layout.questions_info_item, parent, false);
         TextView questionTv = (TextView) convertView.findViewById(R.id.questions_tv);

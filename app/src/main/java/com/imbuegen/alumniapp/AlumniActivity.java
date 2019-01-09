@@ -41,7 +41,7 @@ public class AlumniActivity extends AppCompatActivity {
         listViewAlumni = findViewById(R.id.listViewAlumni);
 
         Bundle gt=getIntent().getExtras();
-        String str1=gt.getString("DeptName");
+        final String str1=gt.getString("DeptName");
         final String str2=gt.getString("CompName");
 
 
@@ -72,6 +72,8 @@ public class AlumniActivity extends AppCompatActivity {
                     for(DataSnapshot qSnapshot: alumniSnapshot.child("Questions").getChildren()) {
                         list.add(qSnapshot.getValue(QuestionsModel.class));
                     }
+
+                    alumni.setDatabaseReferencePath(String.format("Departments/%s/Companies/%s/Alumnis/%s",str1,str2,alumniSnapshot.getKey()));
                     alumni.setQuestionsList(list);
                     AlumniModelList.add(alumni);
                 }

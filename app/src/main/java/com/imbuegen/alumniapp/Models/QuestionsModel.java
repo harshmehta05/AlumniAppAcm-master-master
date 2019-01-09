@@ -2,7 +2,9 @@ package com.imbuegen.alumniapp.Models;
 
 import com.google.firebase.database.PropertyName;
 
-public class QuestionsModel {
+import java.io.Serializable;
+
+public class QuestionsModel implements Serializable {
 
 
     @PropertyName("question")

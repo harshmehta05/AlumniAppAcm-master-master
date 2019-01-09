@@ -1,5 +1,6 @@
 package com.imbuegen.alumniapp.Models;
 
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.PropertyName;
 
 import java.io.Serializable;
@@ -18,12 +19,16 @@ public class AlumniModel   implements Serializable {
     private String joinDate;
 
     private String company;
+    private String databaseReferencePath;
 
 
+    public String getDatabaseReferencePath() {
+        return databaseReferencePath;
+    }
 
-
-
-
+    public void setDatabaseReferencePath(String databaseReferencePath) {
+        this.databaseReferencePath = databaseReferencePath;
+    }
 
     @PropertyName("Questions")
     private ArrayList<QuestionsModel> questionsList;
