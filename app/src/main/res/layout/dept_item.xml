@@ -14,7 +14,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="20dp"
         android:layout_marginTop="14dp"
-        android:src="@drawable/monitor" />
+        app:srcCompat="@drawable/monitor" />
 
     <TextView
         android:id="@+id/txt_name"

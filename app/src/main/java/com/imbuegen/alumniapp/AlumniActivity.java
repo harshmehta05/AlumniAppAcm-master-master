@@ -1,23 +1,24 @@
 package com.imbuegen.alumniapp;
 
-import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.util.Log;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
+import com.imbuegen.alumniapp.Adapters.AlumniListAdapter;
+import com.imbuegen.alumniapp.Models.AlumniModel;
+import com.imbuegen.alumniapp.Models.QuestionsModel;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 public class AlumniActivity extends AppCompatActivity {
 
@@ -25,8 +26,6 @@ public class AlumniActivity extends AppCompatActivity {
 
     ListView listViewAlumni;
     List<AlumniModel> AlumniModelList;
-
-    String fbDeptKey ;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference deptRef ;//=database.getReference("Departments").child(fbDeptKey);
@@ -39,9 +38,11 @@ public class AlumniActivity extends AppCompatActivity {
 
 
 
+        listViewAlumni = findViewById(R.id.listViewAlumni);
+
         Bundle gt=getIntent().getExtras();
         String str1=gt.getString("DeptName");
-        String str2=gt.getString("CompName");
+        final String str2=gt.getString("CompName");
 
 
         AlumniModelList = new ArrayList<>();
@@ -62,12 +63,17 @@ public class AlumniActivity extends AppCompatActivity {
 
                 AlumniModelList.clear();
 
-                for (DataSnapshot alumniSnapshot : dataSnapshot.getChildren())
-                {
-                    String key = alumniSnapshot.getKey();
-                    AlumniModel alumniModel = new AlumniModel(key);
+                for (DataSnapshot alumniSnapshot : dataSnapshot.getChildren()) {
 
-                    AlumniModelList.add(alumniModel);
+                    final AlumniModel alumni = alumniSnapshot.getValue(AlumniModel.class);
+                    alumni.setCompany(str2);
+                    alumni.setAlumniName(alumniSnapshot.child("Name").getValue().toString());
+                    ArrayList<QuestionsModel> list = new ArrayList<>();
+                    for(DataSnapshot qSnapshot: alumniSnapshot.child("Questions").getChildren()) {
+                        list.add(qSnapshot.getValue(QuestionsModel.class));
+                    }
+                    alumni.setQuestionsList(list);
+                    AlumniModelList.add(alumni);
                 }
 
 

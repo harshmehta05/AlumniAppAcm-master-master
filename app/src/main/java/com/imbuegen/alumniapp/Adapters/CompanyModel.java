@@ -1,4 +1,4 @@
-package com.imbuegen.alumniapp;
+package com.imbuegen.alumniapp.Adapters;
 
 public class CompanyModel {
 

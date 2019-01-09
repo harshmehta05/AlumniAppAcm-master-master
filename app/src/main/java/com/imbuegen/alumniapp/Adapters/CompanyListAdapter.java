@@ -1,4 +1,4 @@
-package com.imbuegen.alumniapp;
+package com.imbuegen.alumniapp.Adapters;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
@@ -8,13 +8,16 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.imbuegen.alumniapp.R;
+
 import java.util.List;
+
 
 public class CompanyListAdapter extends ArrayAdapter<CompanyModel> {
     private Activity context;
     private List<CompanyModel> companyList;
 
-    public CompanyListAdapter(Activity context,List<CompanyModel> companyList)
+    public CompanyListAdapter(Activity context, List<CompanyModel> companyList)
     {
         super(context,R.layout.company_list_item,companyList);
         this.context = context;
