@@ -19,6 +19,8 @@ import com.imbuegen.alumniapp.Adapters.QuestionsAdapter;
 import com.imbuegen.alumniapp.Models.AlumniModel;
 import com.imbuegen.alumniapp.Models.QuestionsModel;
 
+import java.util.Objects;
+
 
 public class AlumniInfoActivity extends AppCompatActivity {
 
@@ -47,7 +49,7 @@ public class AlumniInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alumni_info);
-
+        Objects.requireNonNull(getSupportActionBar()).setElevation(0);
 
         nameTextView = findViewById(R.id.alumniName_tv);
         positionTextView = findViewById(R.id.position_tv);
@@ -78,7 +80,6 @@ public class AlumniInfoActivity extends AppCompatActivity {
 
 
                 showDialog();
-
 
 
             }
